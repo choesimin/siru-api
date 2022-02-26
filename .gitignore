@@ -1,0 +1,7 @@
+.DS_Store
+.gradle/
+.vscode/
+bin/
+gradle/
+gradlew
+gradlew.bat

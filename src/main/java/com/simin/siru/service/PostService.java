@@ -49,12 +49,13 @@ public class PostService {
     private List<Long> topIds(String category, Long size) {
         LocalDateTime now = LocalDateTime.now();
 
-        return empathyRepository.findAllByRegistDtBetween(now.minusDays(30), now).stream()
+        return empathyRepository.findAllByRegistDtBetween(now.minusDays(100), now).stream()
             .map(Empathy::getPost)
             .filter(post -> post.getCategory().equals(category))
             .collect(Collectors.groupingBy(Post::getId, Collectors.counting()))
             .entrySet().stream()
             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
             .map(Entry::getKey)
             .limit(size).collect(Collectors.toList());
     }

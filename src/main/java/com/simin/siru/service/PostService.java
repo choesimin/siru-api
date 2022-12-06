@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.simin.siru.entity.Empathy;
@@ -34,8 +35,8 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
-    public List<Post> listByCategory(String category) {
-        return postRepository.findAllByCategoryOrderByRegistDtDesc(category);
+    public List<Post> listByCategory(String category, Pageable pageable) {
+        return postRepository.findAllByCategoryOrderByRegistDtDesc(category, pageable);
     }
 
     public Long countByCategory(String category) {

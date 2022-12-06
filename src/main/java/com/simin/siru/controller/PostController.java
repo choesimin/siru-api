@@ -1,5 +1,6 @@
 package com.simin.siru.controller;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +36,8 @@ public class PostController {
     }
 
     @GetMapping("/category/{category}")
-    public PostResponse[] list(@PathVariable("category") String category) {
-        return postService.listByCategory(category).stream().map(PostResponse::entityToDto).toArray(PostResponse[]::new);
+    public PostResponse[] list(@PathVariable("category") String category, Pageable pageable) {
+        return postService.listByCategory(category, pageable).stream().map(PostResponse::entityToDto).toArray(PostResponse[]::new);
     }
 
     @GetMapping("/category/{category}/count")
